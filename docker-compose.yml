@@ -1,0 +1,22 @@
+# docker-compose.yml - STANDALONE dla Challenge 03
+# Uzycie: docker compose up --build
+# Aplikacja dostepna pod: http://localhost:8003
+
+version: '3.8'
+
+services:
+  ch03-login:
+    build: ./ch03-login
+    container_name: ctf-ch03-login
+    ports:
+      - "8003:5000"
+    environment:
+      # Zmien flage przed kazda sesja jesli chcesz
+      - FLAG=ALX{sql1_byp4ss_un10n_s3l3ct}
+    restart: unless-stopped
+    # Ograniczenia zasobow - kontener nie powinien zjadac RAM
+    deploy:
+      resources:
+        limits:
+          memory: 128m
+          cpus: '0.5'
